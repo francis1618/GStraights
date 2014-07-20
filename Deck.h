@@ -4,18 +4,17 @@
 #include "Card.h"
 #include <vector>
 
-
+//deck class!!! :D
 class Deck {
 
 //output stream overload
 friend std::ostream &operator<<(std::ostream &, const Deck &);
 
 public:
-	Deck();
-
+	Deck();	//constructor
 
 public:
-	void reset();
+	void reset();		//reset deck to be in order
 	void shuffle();		//shuffle according to given algorithm
 	Card deal();		//card dealer
 	bool isEmpty() const;	//query if empty

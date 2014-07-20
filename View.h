@@ -21,21 +21,24 @@ public:
 	virtual ~View();
 
 public:
+	//observer update impl
 	void update();
 
 protected:
+	//helper functions
 	virtual void createNewGame(bool forceCreate = false);
 	virtual void displayTurnView();
 	virtual void displayEndOfGameStats();
 	virtual void displayEndOfRoundStats();
 
 protected:
+	//button click event functions
 	virtual void strategyToggleButtonClicked(int i);
 	virtual void seedButtonClicked();
 	virtual void newGameButtonClicked();
 
 private:
-	//card image delegation
+	//card image creation delegation
 	CardImage &cardUI;
 
 	//overall view
@@ -47,22 +50,23 @@ private:
 	Gtk::HBox suit_display[Card::SUIT_COUNT];
 	Gtk::Image card_image[Card::SUIT_COUNT][Card::RANK_COUNT];
 	
+
 	Gtk::HBox center_box;
 	//display of player's info
 	Gtk::Frame player_frame[4];
 	Gtk::VBox player_box[4];
 	Gtk::Label player_stat[4];
-	Gtk::Button strategy_toggle_button[4];
-	//user
+	Gtk::Button strategy_toggle_button[4];	
+	//seed and newgame buttons
+	Gtk::Button seed_button;
+	Gtk::Button new_game_button;
 
 	//user's hand
 	Gtk::VBox hand_box;
 	Gtk::Label hand_prompt;
 	Gtk::HBox hand_select;
 	CardButton* hand_button[13];
-	//other input
-	Gtk::Button seed_button;
-	Gtk::Button new_game_button;
+
 
 private:
 	Model *model_;

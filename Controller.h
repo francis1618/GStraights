@@ -4,14 +4,14 @@
 #include "Model.h"
 #include "Card.h"
 
+//controller class
 class Controller {
 public:
 	Controller(Model*);
-	//void newGameClicked();
-	void setSeed(int);
-	void newGame(char*);
-	void strategyToggle(int);
-	void cardClicked(const Card&);
+	void setSeed(int);	//set seed
+	void newGame(char*);	//create new game
+	void strategyToggle(int);	//toggle between strategy types
+	void cardClicked(const Card&);	//report card button clicked
 
 private:
 	Model *model_;

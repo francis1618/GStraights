@@ -4,6 +4,7 @@
 #include "StraightStrategy.h"
 #include <vector>
 
+//Huamn Straight Strategy
 class HumanStrategy : public StraightStrategy {
 public:
 	bool executeStrategy(Player&, std::vector<Card>&);

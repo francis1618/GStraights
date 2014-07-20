@@ -9,17 +9,20 @@
 #include <vector>
 using namespace std;
 
+//constructor
 Model::Model() 
 	:  seed_(0), newSeed_(true) {
 	for(int i=0; i<kNumbeOfPlayers; i++)
 		player_[i] = NULL;
 }
 
+//set new seed
 void Model::setSeed(int seed) {
 	seed_ = seed;
 	newSeed_ = true;
 }
 
+//toggle between human and computer strategy for the player
 void Model::strategyToggle(int p) {
 	if(playerType[p] == 'h') {
 		player_[p]->setStrategy(new ComputerStrategy);
@@ -34,6 +37,8 @@ void Model::strategyToggle(int p) {
 	}
 }
 
+
+//game initilization
 void Model::initGame(char type[]) {
 	for(int i=0; i<kNumbeOfPlayers; i++)
 		playerType[i] = type[i];
@@ -66,6 +71,7 @@ void Model::initGame(char type[]) {
 	initRound();
 }
 
+//round initilization
 void Model::initRound() {
 	//deal cards, find firstPlayer of the round
 	deck_.shuffle();
@@ -86,6 +92,7 @@ void Model::initRound() {
 	beginTurn();
 }
 
+//round cleanup
 void Model::endRound() {
 	for(int p=0; p<kNumbeOfPlayers; p++) {
 		int roundScore = 0;;
@@ -110,10 +117,12 @@ void Model::endRound() {
 	notify();
 }
 
+//check if round is over
 bool Model::roundOver() const {
 	return 0 == roundCountDown_;
 }
 
+//game cleanup
 void Model::endGame() {
 	//can't just sort on ranking because has to have secondary ordering based on player#
 	ranking_.clear();
@@ -135,11 +144,14 @@ void Model::endGame() {
 		cout<<"Player "<<winners[i]+1<<" wins!"<<endl;
 }
 
-vector<int> Model::getRanking() {
+
+//get player in order of their scores
+vector<int> Model::getRanking() const {
 	return ranking_;
 }
 
-vector<int> Model::getWinners() {
+//get winners(possible tied and multiple)
+vector<int> Model::getWinners() const {
 	vector<int> winners;
 	winners.push_back(ranking_[0]);
 	for(unsigned i=1; player_[ranking_[i]]->getScore() == player_[winners[0]]->getScore(); i++)
@@ -149,6 +161,7 @@ vector<int> Model::getWinners() {
 }
 
 //mutual tail recursion with endTurn
+//begin a turn
 void Model::beginTurn() {
 	roundCountDown_--;
 	bool finished = getCurrentPlayer()->makeMove(table_);
@@ -159,6 +172,7 @@ void Model::beginTurn() {
 
 }
 
+//process ui info, and end the turn
 void Model::processTurn(const Card& c) {
 	Player *p = getCurrentPlayer();
 
@@ -173,6 +187,7 @@ void Model::processTurn(const Card& c) {
 }
 
 //mutual tail recursion iwth beginTurn
+//end turn cleanup
 void Model::endTurn() {
 	if(roundCountDown_ == 0) {
 		endRound();
@@ -183,6 +198,7 @@ void Model::endTurn() {
 }
 
 
+//check if a player has over 80 score
 bool Model::gameOver() const {
 	for(int i=0; i<kNumbeOfPlayers; i++)
 		if(80<=player_[i]->getScore())
@@ -190,20 +206,20 @@ bool Model::gameOver() const {
 	return false;
 }
 
-Player* Model::getCurrentPlayer() {
+//getters
+Player* Model::getCurrentPlayer() const {
 	return player_[currentPlayer_];
 }
 
-int Model::getCurrentPlayerNumber() {
+int Model::getCurrentPlayerNumber() const {
 	return currentPlayer_;
 }
 
-Player** Model::getPlayers() {
+Player** Model::getPlayers() {//const {
 	return player_;
-
 }
 
-vector<Card> Model::getTable() {
+vector<Card> Model::getTable() const {
 	return table_;
 }
 

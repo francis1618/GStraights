@@ -1,6 +1,7 @@
 #include "Subject.h"
 #include "Observer.h"
 
+//generic subject function impl
 void Subject::subscribe(Observer* o) {
 	observers_.insert(o);
 }

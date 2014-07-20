@@ -12,12 +12,12 @@ using std::vector;
 class CardImage {
 
 public:
-	static CardImage& getInstance();
-	Glib::RefPtr<Gdk::Pixbuf> getCardImage( Card::Suit, Card::Rank );   // Returns the image for the specified card.
-	Glib::RefPtr<Gdk::Pixbuf> getCardImage( const Card&); 
-	Glib::RefPtr<Gdk::Pixbuf> getNullCardImage();                 // Returns the image to use for the placeholder.
+	static CardImage& getInstance();		//get singleton instance
+	Glib::RefPtr<Gdk::Pixbuf> getCardImage( Card::Suit, Card::Rank ) const;   	// return corresponding image for a card
+	Glib::RefPtr<Gdk::Pixbuf> getCardImage( const Card&) const; 			  	
+	Glib::RefPtr<Gdk::Pixbuf> getNullCardImage() const;                 		// Returns image for a null card
 
-//prohibited
+//prohibited functions since this is a singleton
 private:
 	CardImage();
 	CardImage(const CardImage&);

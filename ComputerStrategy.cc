@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 
-//make first valid move
+//make first valid move, report computer finished with his/her turn
 bool ComputerStrategy::executeStrategy(Player& player,  vector<Card>& table) {
 	//get possible plays
 	vector<Card> choices = validStraightPlays(player, table);

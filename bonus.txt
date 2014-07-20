@@ -1,0 +1,21 @@
+bonus 1)
+I have a textual record of the player's plays in terminal. It
+follows the format specified in part 1 of this project
+
+bonus 2)
+I display all card in the player's hand and grey out the cards
+that are valid. I provided textual prompt indicating if the player
+has valid moves or only has discards
+
+bonus 3)
+A player may join into the game on another player's turn by taking over
+a computer's position. This is sort of like the opposite of RageQuit which
+is also implemented
+
+bonus 4)
+I used the fork/execve paradigm to use canberra-gtk-play to play a folder of
+.ogg files along with the game. The folder must be placed in the same 
+directory as straights. To enable this feature, the compile statement must
+have -DMUSIC. I orginally wanted to use gstreammer or gstreammermm, but 
+the school server is missing both the -dev program for these two libraries.
+I tried to install them myself, but I didn't have permission.

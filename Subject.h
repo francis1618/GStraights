@@ -5,6 +5,7 @@
 
 class Observer;
 
+//subject interace
 class Subject {
 public:
 	void subscribe(Observer*);

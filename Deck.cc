@@ -15,6 +15,8 @@ Deck::Deck() : index_(0) {
 	reset();
 }
 
+
+//basically place cards in deck in order
 void Deck::reset() {
 	cards_.clear();
 	for (int suit = Card::CLUB; suit < Card::SUIT_COUNT; suit++) {

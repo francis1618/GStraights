@@ -20,6 +20,7 @@ Card::Rank Card::getRank() const{
 	return rank_;
 }
 
+//convert to string representation
 string Card::toString() const{
 	static string suits[Card::SUIT_COUNT] = {"C", "D", "H", "S"};
 	static string ranks[Card::RANK_COUNT] = {"A", "2", "3", "4", "5", "6",
