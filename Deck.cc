@@ -12,6 +12,11 @@ bool Deck::isEmpty() const {
 
 //constructor
 Deck::Deck() : index_(0) {
+	reset();
+}
+
+void Deck::reset() {
+	cards_.clear();
 	for (int suit = Card::CLUB; suit < Card::SUIT_COUNT; suit++) {
 		for (int rank = Card::ACE; rank < Card::RANK_COUNT; rank++) {
 			Card card((Card::Suit)suit, (Card::Rank)rank);
@@ -19,7 +24,6 @@ Deck::Deck() : index_(0) {
 		}
 	}
 }
-
 
 // shuffle with given algorithm by school
 void Deck::shuffle() {

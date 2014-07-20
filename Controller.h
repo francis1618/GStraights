@@ -10,6 +10,7 @@ public:
 	//void newGameClicked();
 	void setSeed(int);
 	void newGame(char*);
+	void strategyToggle(int);
 	void cardClicked(const Card&);
 
 private:

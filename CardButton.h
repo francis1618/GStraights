@@ -10,7 +10,7 @@
 class CardButton : public Gtk::Button {
 public:
 	CardButton(Controller*);
-	void setCard(const Card&);
+	void setCard(const Card&, bool sensitive = true);
 	void setNullCard();
 	void cardButtonClicked();
 private:

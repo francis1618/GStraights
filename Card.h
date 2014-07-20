@@ -2,7 +2,7 @@
 #define CARD_H
 
 #include <iostream>
-
+#include <string>
 //card class, value based object
 class Card{
 public:
@@ -15,6 +15,7 @@ public:
 	Card(Suit, Rank);		//constructor
 	Suit getSuit() const;	//getters
 	Rank getRank() const;
+	std::string toString() const;
 	
 private:
 	Suit suit_;

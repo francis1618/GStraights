@@ -15,6 +15,7 @@ public:
 
 
 public:
+	void reset();
 	void shuffle();		//shuffle according to given algorithm
 	Card deal();		//card dealer
 	bool isEmpty() const;	//query if empty

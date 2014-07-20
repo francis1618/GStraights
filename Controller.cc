@@ -15,6 +15,9 @@ void Controller::newGame(char* type) {
 	model_->initGame(type);
 }
 
+void Controller::strategyToggle(int p) {
+	model_->strategyToggle(p);
+}
 void Controller::cardClicked(const Card &c) {
 	model_->processTurn(c);
 }

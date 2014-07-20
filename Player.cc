@@ -3,13 +3,26 @@
 #include <algorithm> 
 #include "Player.h"
 #include "StraightStrategy.h"
+#include <iostream> 
 using namespace std;
 
 
 //constructor, set strategy and player number
-Player::Player(StraightStrategy* strategy)
-	: strategy_(strategy), score_(0) {}
+Player::Player(StraightStrategy* strategy, int playerNumber)
+	: strategy_(strategy), playerNumber_(playerNumber), score_(0) {}
 
+
+//reset Player info
+void Player::reset() {
+	hand_.clear();
+	discard_.clear();
+	score_ = 0;
+}
+
+//set player number
+void Player::setPlayerNumber(int number) {
+	playerNumber_ = number;
+}
 
 //update strategy
 void Player::setStrategy(StraightStrategy* strategy) {
@@ -27,12 +40,14 @@ void Player::addCard(const Card &card) {
 //remove card from hand, return true if card is in hand
 void Player::playCard(const Card &card) {
 	remove(card);
+	cout<<"Player "<<playerNumber_<<" plays "<<card<<"."<<endl;
 }
 
 //remove card from and and add card to discard pile, return true if card is in hand
 void Player::discard(const Card &card) {
 	remove(card);
 	discard_.push_back(card);
+	cout<<"Player "<<playerNumber_<<" discards "<<card<<"."<<endl;
 
 }
 

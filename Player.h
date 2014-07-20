@@ -11,11 +11,12 @@ class StraightStrategy;
 class Player {
 public:
 	//constructor and strategy setter
-	Player(StraightStrategy*);
+	Player(StraightStrategy*, int);
 	~Player();
 	void setStrategy(StraightStrategy*);
 	void setPlayerNumber(int);
 	//modifiers
+	void reset(); //because its a reset function and christine realized we needed it
 	void addCard(const Card&);
 	void playCard(const Card&);		//return false if card is not in hand
 	void discard(const Card&); 		//return false if card is not in hand
@@ -30,7 +31,6 @@ public:
 	std::vector<Card> getDiscard() const;	
 	//make a move according to strategy
 	bool makeMove(std::vector<Card>&);
-
 private:
 	//inner helper function
 	void remove(const Card&);
@@ -40,6 +40,7 @@ private:
 	std::vector<Card> discard_;		//list of discards for the round
 	std::vector<Card> hand_;		//list of cards still in hand for the round
 
+	int playerNumber_;
 	int score_;						//game score
 };
 

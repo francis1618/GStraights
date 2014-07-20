@@ -20,6 +20,14 @@ Card::Rank Card::getRank() const{
 	return rank_;
 }
 
+string Card::toString() const{
+	static string suits[Card::SUIT_COUNT] = {"C", "D", "H", "S"};
+	static string ranks[Card::RANK_COUNT] = {"A", "2", "3", "4", "5", "6",
+		"7", "8", "9", "10", "J", "Q", "K"};
+	string str;
+	str = ranks[getRank()]+suits[getSuit()];
+	return str;
+}
 
 //comparison overloads
 bool operator==(const Card &a, const Card &b){
@@ -35,13 +43,11 @@ bool operator<(const Card &a, const Card &b) {
 		return false;
 }
 
+
+
 //output stream overload
 ostream &operator<<(ostream &out, const Card &c){
-	string suits[Card::SUIT_COUNT] = {"C", "D", "H", "S"};
-	string ranks[Card::RANK_COUNT] = {"A", "2", "3", "4", "5", "6",
-		"7", "8", "9", "10", "J", "Q", "K"};
-		
-	out << ranks[c.getRank()] << suits[c.getSuit()];
+	out<<c.toString();
 	
 	return out;
 }

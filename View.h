@@ -12,6 +12,7 @@
 #include <gtkmm/box.h>
 #include <gtkmm/image.h>
 #include <gtkmm/frame.h>
+#include <gtkmm/label.h>
 
 class View : public Gtk::Window, public Observer { //:public Observer
 public:
@@ -23,6 +24,17 @@ public:
 	void update();
 
 protected:
+	virtual void createNewGame(bool forceCreate = false);
+	virtual void displayTurnView();
+	virtual void displayEndOfGameStats();
+	virtual void displayEndOfRoundStats();
+
+protected:
+	virtual void strategyToggleButtonClicked(int i);
+	virtual void seedButtonClicked();
+	virtual void newGameButtonClicked();
+
+private:
 	//card image delegation
 	CardImage &cardUI;
 
@@ -30,29 +42,28 @@ protected:
 	Gtk::VBox overview;
 
 	//display of cards on table
-	Gtk::VBox table_display;
-	Gtk::Frame table_frame;
+	Gtk::VBox table_box;
+	Gtk::Frame suit_frame[Card::SUIT_COUNT];
 	Gtk::HBox suit_display[Card::SUIT_COUNT];
 	Gtk::Image card_image[Card::SUIT_COUNT][Card::RANK_COUNT];
 	
+	Gtk::HBox center_box;
+	//display of player's info
+	Gtk::Frame player_frame[4];
+	Gtk::VBox player_box[4];
+	Gtk::Label player_stat[4];
+	Gtk::Button strategy_toggle_button[4];
+	//user
 
-	//user interaction
-	Gtk::HBox user_input;
 	//user's hand
+	Gtk::VBox hand_box;
+	Gtk::Label hand_prompt;
 	Gtk::HBox hand_select;
 	CardButton* hand_button[13];
 	//other input
-	Gtk::VBox other_select;
-	Gtk::Button rageQuit;
-	Gtk::Button gameQuit;
-	Gtk::Button newGame;
+	Gtk::Button seed_button;
+	Gtk::Button new_game_button;
 
-	//other misc widgets and boxes
-	Gtk::Button seedButton;
-	Gtk::Button newGameButton;
-	virtual void seedButtonClicked();
-	virtual void newGameButtonClicked();
-	virtual void createNewGame(bool forceCreate = false);
 private:
 	Model *model_;
 	Controller *controller_;
